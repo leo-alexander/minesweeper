@@ -17,7 +17,7 @@ var board = {
 
 
 function startGame () {
-  newBoard;
+  newBoard();
   for (var i = 0; i < board.cells.length; i++) {
     board.cells[i].surroundingMines = countSurroundingMines(board.cells[i])
   }
@@ -27,16 +27,16 @@ function startGame () {
 }
 
 function newBoard () {
-  for (var i = 0; i < 4; i++) {
-    for (var j = 0; j < 4; j++) {
+  board.cells = []
+  for (var i = 0; i < 5; i++) {
+    for (var j = 0; j < 5; j++) {
       var cell = newCell(i,j);
       board.cells.push(cell);
     }
   }
-  return board;
 }
 
-function newCell (i, j) {
+function newCell (i,j) {
   var cell = {
     row: i,
     col: j,
@@ -44,9 +44,8 @@ function newCell (i, j) {
     hidden: true,
     isMarked: false
   }
+  return cell;
 }
-
-
 
 function checkForWin () {
   for (var i = 0; i < board.cells.length; i++) {
