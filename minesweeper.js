@@ -23,7 +23,7 @@ function startGame () {
 }
 
 function checkForWin () {
-  for (var i = 0; i < board.cells.length; i++)
+  for (var i = 0; i < board.cells.length; i++) {
     if (board.cells[i].isMine && board.cells[i].isMarked) {
       return;
     }
@@ -31,6 +31,7 @@ function checkForWin () {
       return;
     }
     lib.displayMessage('You win!');
+  }
   }
 
 function countSurroundingMines (cell) {
