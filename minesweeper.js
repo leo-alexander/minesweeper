@@ -58,14 +58,16 @@ function genMine () {
 
 function checkForWin () {
   for (var i = 0; i < board.cells.length; i++) {
-    if (board.cells[i].isMine && board.cells[i].isMarked) {
+    if (board.cells[i].isMine && !board.cells[i].isMarked) {
+      console.log('Mine is not marked!');
       return;
     }
     if (!board.cells[i].isMine && board.cells[i].hidden) {
+      console.log('Not mine and hidden!');
       return;
     }
-    lib.displayMessage('You win!');
   }
+  lib.displayMessage('You win!');
   }
 
 function countSurroundingMines (cell) {
