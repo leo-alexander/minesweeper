@@ -28,8 +28,8 @@ function startGame () {
 }
 
 function newBoard () {
-  for (var i = 0; i < 4; i++) {
-    for (var j = 0; j < 4; j++) {
+  for (var i = 0; i < 3; i++) {
+    for (var j = 0; j < 3; j++) {
       var cell = newCell(i,j);
       board.cells.push(cell);
     }
@@ -68,6 +68,7 @@ function checkForWin () {
     }
   }
   lib.displayMessage('You win!');
+  resetOption()
   }
 
 function countSurroundingMines (cell) {
@@ -79,4 +80,15 @@ function countSurroundingMines (cell) {
     }
   }
   return a;
+}
+
+function resetOption() {
+  document.getElementById("reset").innerHTML = "<button type='button'>Play Again?</button>";
+  document.getElementById("reset").addEventListener("click", clearBoard);
+}
+
+function clearBoard() {
+  var board = document.getElementsByClassName('board')[0];
+  board.innerHTML = '';
+  newBoard();
 }
