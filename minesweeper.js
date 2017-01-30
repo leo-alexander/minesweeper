@@ -2,18 +2,22 @@ document.addEventListener('DOMContentLoaded', startGame)
 
 // Define your `board` object here!
 var board = {
-  cells: [{row: 0, col: 0, isMine: 0, hidden: true},
-          {row: 0, col: 1, isMine: 0, hidden: true},
-          {row: 0, col: 2, isMine: 0, hidden: true},
-          {row: 1, col: 0, isMine: 0, hidden: true},
-          {row: 1, col: 1, isMine: 0, hidden: true},
-          {row: 1, col: 2, isMine: 0, hidden: true},
-          {row: 2, col: 0, isMine: 0, hidden: true},
-          {row: 2, col: 1, isMine: 0, hidden: true},
-          {row: 2, col: 2, isMine: true, hidden: true}]
+    cells:[]
+  // cells: [{row: 0, col: 0, isMine: 0, hidden: true},
+  //         {row: 0, col: 1, isMine: 0, hidden: true},
+  //         {row: 0, col: 2, isMine: 0, hidden: true},
+  //         {row: 1, col: 0, isMine: 0, hidden: true},
+  //         {row: 1, col: 1, isMine: 0, hidden: true},
+  //         {row: 1, col: 2, isMine: 0, hidden: true},
+  //         {row: 2, col: 0, isMine: 0, hidden: true},
+  //         {row: 2, col: 1, isMine: 0, hidden: true},
+  //         {row: 2, col: 2, isMine: true, hidden: true}]
   }
 
+
+
 function startGame () {
+  newBoard;
   for (var i = 0; i < board.cells.length; i++) {
     board.cells[i].surroundingMines = countSurroundingMines(board.cells[i])
   }
@@ -21,6 +25,28 @@ function startGame () {
   document.addEventListener("oncontextmenu", checkForWin);
   lib.initBoard()
 }
+
+function newBoard () {
+  for (var i = 0; i < 4; i++) {
+    for (var j = 0; j < 4; j++) {
+      var cell = newCell(i,j);
+      board.cells.push(cell);
+    }
+  }
+  return board;
+}
+
+function newCell (i, j) {
+  var cell = {
+    row: i,
+    col: j,
+    isMine: true,
+    hidden: true,
+    isMarked: false
+  }
+}
+
+
 
 function checkForWin () {
   for (var i = 0; i < board.cells.length; i++) {
