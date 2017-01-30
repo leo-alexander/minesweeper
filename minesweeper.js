@@ -24,12 +24,12 @@ function startGame () {
   document.addEventListener("click", checkForWin);
   document.addEventListener("oncontextmenu", checkForWin);
   lib.initBoard()
+  console.log(board)
 }
 
 function newBoard () {
-  board.cells = []
-  for (var i = 0; i < 5; i++) {
-    for (var j = 0; j < 5; j++) {
+  for (var i = 0; i < 4; i++) {
+    for (var j = 0; j < 4; j++) {
       var cell = newCell(i,j);
       board.cells.push(cell);
     }
@@ -40,11 +40,20 @@ function newCell (i,j) {
   var cell = {
     row: i,
     col: j,
-    isMine: true,
+    isMine: genMine(),
     hidden: true,
-    isMarked: false
   }
   return cell;
+}
+
+function genMine () {
+  var num = Math.random();
+  if (num < 0.24) {
+    return true;
+  }
+  else {
+    return false;
+  }
 }
 
 function checkForWin () {
